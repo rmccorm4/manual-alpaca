@@ -1,0 +1,65 @@
+Manual Alpaca v0.9
+by Matt Haines
+http:////www.throwinggoodmoney.com
+
+The purpose of this python script is to allow you to enter manual orders using
+the Alpaca brokerage. You might use this to trade manually while still fine-
+tuning your algo system, or as an emergency if your system breaks down.
+
+To start, you need two files in the same directory as this script. 'keys.csv' 
+contains your paper trading keys, while 'live_keys.csv' contains your live
+trading keys. Upon launch, the script asks you to choose between 'live' or
+paper trading. You must type the whole word 'live' for safety reasons, and
+you will be constantly reminded that it's your real account.
+
+You can also enter in a maximum position size. 'MP' will automatically cal-
+culate the appropriate number of shares for a 'buy' order. You can ignore this
+at start, or override it at ordering time, but it can be useful for speeding
+up ordering.
+
+Selling is done through the 'get positions' function (see below)
+
+Buying is done through the 'ticker' function (see below)
+
+
+Available commands:
+
+H - This help menu
+
+G - Get Positions
+
+This shows your current positions, and allows you to sell them.
+
+T - Get Ticker
+
+This fetches the most recent trade price for the ticker, along with the lot
+size and time of execution. You may enter a limit or market order. You can
+also specify the "time in force" (just until the end of the day, or until 
+canceled).
+
+You must also specify whether the order will be a:
+- market order (buy at the current price, subject to price movements)
+- limit order (buy it for a set price or lower), or 
+- 'opg', which means buy at the open, for the official
+opening price. For an opg order, you must enter it no later than 15 min 
+before the opening bell.
+
+O - show orders (all)
+
+This shows all orders, open and filled, that were placed after midnight 
+NYC time. It is display-only, and returns you to the main menu.
+
+OC - show closed orders
+
+This shows all closed orders that were placed after midnight NYC time.
+It is display-only, and returns you to the main menu.
+
+OO - show open orders
+This shows all open orders that were placed after midnight NYC time.
+You may choose to cancel an open order by entering the index number.
+
+Q - quit
+
+If you have any questions, please contact me through my website:
+
+http://throwinggoodmoney.com/contact-me/
