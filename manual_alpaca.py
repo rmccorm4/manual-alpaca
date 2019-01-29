@@ -24,13 +24,18 @@ def menu_input(argument):
 def order_list_all():
     
     print('get all orders...')
-    
+
+    inp = input('Since (M)idnight or return for all: ').upper()
     order_list = []
     nr = {}
     
     midnight = now.strftime('%Y-%m-%d')
     
-    orders = api.list_orders(status="all", after=midnight)
+    if inp == 'M':
+        print('Orders since midnight...')
+        orders = api.list_orders(status="all", after=midnight)
+    else:
+        orders = api.list_orders(status="all")
     
     cnt = 0
     for o in orders:
@@ -54,13 +59,21 @@ def order_list_closed():
     
     print('get all closed orders...')
     
+
+    inp = input('Since (M)idnight or return for all: ').upper()
     order_list = []
     nr = {}
     
     midnight = now.strftime('%Y-%m-%d')
     
-    orders = api.list_orders(status="closed", after=midnight)
-    
+    if inp == 'M':
+        print('Orders since midnight...')
+        orders = api.list_orders(status="closed", after=midnight)
+    else:
+        orders = api.list_orders(status="closed")
+
+
+
     cnt = 0
     for o in orders:
         nr = {
@@ -83,13 +96,20 @@ def order_list_open():
     
     print('get all open orders...') 
     
+    inp = input('Since (M)idnight or return for all: ').upper()
     order_list = []
     nr = {}
     
     midnight = now.strftime('%Y-%m-%d')
     
-    orders = api.list_orders(status="open", after=midnight)
-    
+    if inp == 'M':
+        print('Orders since midnight...')
+        orders = api.list_orders(status="open", after=midnight)
+    else:
+        orders = api.list_orders(status="open")
+
+
+
     cnt = 0
     for o in orders:
         nr = {
