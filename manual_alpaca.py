@@ -3,6 +3,7 @@ import alpaca_trade_api as tradeapi
 import os
 import sys
 from pandas import read_csv
+import pandas as pd
 
 
 def menu_input(argument):
@@ -14,12 +15,33 @@ def menu_input(argument):
         'OO': order_list_open,
         'H': help_text,
         'Q': exit_script,
+        'I': change_id
     }
     # Get the function from switcher dictionary
     func = switcher.get(argument, lambda: print("Invalid entry ('H' for help)"))
     # Execute the function
     func()
     return
+
+def change_id():
+    
+    global strat
+    
+    print('change user id...')
+    print('current id prefix: ',strat)
+    inp = input('enter new user id prefix for orders (max 10 chars): ')
+    if len(inp)>10:
+        print('input too long. returning...')
+        return
+    if inp != '':
+        strat = inp+'_'
+    else:
+        strat = ''
+
+    print('user id prefix changed to: ',strat)
+
+    
+    return()
 
 def order_list_all():
     
@@ -209,14 +231,19 @@ def get_ticker():
                 return
         else:
             qty = input ('quantity to buy (or enter for max position of {} shares, 0 to return)'.format(int(max_pos_size / lquote.price)))
+            if isinstance(qty,int) == False:
+                print('Input error detected. Returning...')
+                return
             if qty == '0':
-                print('cancel and returning...')
+                print('Command canceled. Returning...')
                 return
             if qty == '':
                 print('quantity = ',int(max_pos_size / lquote.price))
                 qty = str(int(max_pos_size / lquote.price))
                 
         
+        print(strat+str(pd.Timestamp.utcnow().isoformat()))
+    
         try:
             if inp == 'L':
                 order = api.submit_order(
@@ -225,6 +252,7 @@ def get_ticker():
                     side='buy',
                     type=order_type,
                     time_in_force=type_tif[tif],
+                    client_order_id=strat+str(pd.Timestamp.utcnow().isoformat()),
                     limit_price=lim
                 )
 
@@ -234,6 +262,7 @@ def get_ticker():
                     qty=qty,
                     side='buy',
                     type=order_type,
+                    client_order_id=strat+str(pd.Timestamp.utcnow().isoformat()),
                     time_in_force='day'
                 )
         except Exception as e:
@@ -297,6 +326,7 @@ def get_positions():
                     side='sell',
                     limit_price=limprice,
                     type='limit',
+                    client_order_id= strat + str(pd.Timestamp.utcnow().isoformat()),
                     time_in_force=type_tif[sell_tif],
                     )
 
@@ -312,6 +342,7 @@ def get_positions():
                     qty=numsharesraw,
                     side='sell',
                     type='market',
+                    client_order_id=strat+str(pd.Timestamp.utcnow().isoformat()),
                     time_in_force=type_tif[sell_tif],
                     )
 
@@ -337,6 +368,7 @@ def live_print():
 
 max_pos_size = 0
 root_path = ''
+
 
 live = input('Live or paper trading? Enter "live" or enter: ')
 
@@ -370,7 +402,8 @@ else:
 pub_key = keys.at[0, 'pub']
 priv_key = keys.at[0, 'priv']
 
-
+global strat
+strat = ''
 api = tradeapi.REST(pub_key, priv_key)
 
 clock = api.get_clock()
@@ -391,6 +424,7 @@ while loop == True:
         live_print()
         
     print('\naccount value: {}, buying power: {}'.format(acct.portfolio_value, acct.buying_power))
+    print('user prefix: ',strat)
 
     user_selection = input("Enter Selection ('H'for help, 'Q' for quit): ").upper()
     menu_input(user_selection)
