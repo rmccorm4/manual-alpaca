@@ -59,7 +59,6 @@ def order_list_all():
     else:
         orders = api.list_orders(status="all")
     
-    cnt = 0
     for o in orders:
         nr = {
              'symbol' : o.symbol,
@@ -194,9 +193,10 @@ def exit_script():
     return
 
 def get_ticker():
+
+    type_tif = {'G':'gtc', 'D':'day', 'O':'opg'}
     
     order = {}
-    type_tif = {'G':'gtc', 'D':'day'}
 
 
     print('get ticker...')
@@ -214,6 +214,7 @@ def get_ticker():
     print('symbol: {} last trade price: {} size: {} time: {}'.format(ticker,lquote.price, lquote.size, lquote.timestamp.strftime('%Y-%m-%d %H:%M:%S')))
 
     inp = input('Buy (M)arket, (L)imit or return: ').upper()
+
     
     if inp == 'M' or inp == 'L':
         if inp == 'L':
@@ -223,6 +224,7 @@ def get_ticker():
             
         else:
             order_type = 'market'
+            tif = input('time in force: (G)TC, (D)ay, (O)PG: ').upper()
         
         if max_pos_size == 0:
             qty = input('quantity to buy (blank to cancel): ')
@@ -230,7 +232,7 @@ def get_ticker():
                 print('cancel and returning...')
                 return
         else:
-            qty = input ('quantity to buy (or enter for max position of {} shares, 0 to return)'.format(int(max_pos_size / lquote.price)))
+            qty = input ('quantity to buy (or enter for max position of {} shares, 0 to return): '.format(int(max_pos_size / lquote.price)))
             if isinstance(qty,int) == False:
                 print('Input error detected. Returning...')
                 return
@@ -263,7 +265,7 @@ def get_ticker():
                     side='buy',
                     type=order_type,
                     client_order_id=strat+str(pd.Timestamp.utcnow().isoformat()),
-                    time_in_force='day'
+                    time_in_force=type_tif[tif]
                 )
         except Exception as e:
             print('error\n',e)
