@@ -1,0 +1,9 @@
+name: manual_alpaca
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.6
+  - pandas
+  - pip:
+    - alpaca_trade_api
