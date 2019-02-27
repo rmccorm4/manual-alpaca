@@ -5,6 +5,10 @@
 This project is meant to manually interact with Alpaca's trading API in order
 to more easily debug trading algorithms, and also provide a new way to trade.
 
+As a side note, I wanted to learn more about Continuous Integration such as 
+TravisCI and automatic code linting. So I this is going to be my playground
+for that.
+
 ## Acknowledgements
 
 The base code for this repository was forked from
@@ -15,12 +19,12 @@ an actual GitHub fork, but the repo is hosted on BitBucket.
 
 ## Setup
 
-### Python API Client 
+### Python Client 
 
 This repository makes use of the Alpaca API's
 [Python client](https://github.com/alpacahq/alpaca-trade-api-python).
 
-#### Conda Environment
+**Conda Environment**
 
 To create a portable/sandboxed conda environment for your python packages, run:
 
@@ -29,7 +33,7 @@ conda env create -f config/environment.yaml
 source activate manual_alpaca
 ```
 
-#### Pip
+**Pip**
 
 To install the required python packages with `pip` instead, run:
 
