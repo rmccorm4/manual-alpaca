@@ -1,2 +1,3 @@
 pandas
 alpaca_trade_api
+black
