@@ -7,3 +7,4 @@ dependencies:
   - pandas
   - pip:
     - alpaca_trade_api
+	- black
