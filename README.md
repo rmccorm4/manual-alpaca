@@ -12,7 +12,7 @@ for that.
 ## Acknowledgements
 
 The base code for this repository was forked from
-[Matt Haines](https://bitbucket.org/snugglepuppy/manual_alpaca/overview>)
+[Matt Haines](https://bitbucket.org/snugglepuppy/manual_alpaca/)
 on 02/26/2019 because I thought it was a cool project, but I wanted to expand
 on the code and possibly add a GUI or Web interface. I would have made this
 an actual GitHub fork, but the repo is hosted on BitBucket.
