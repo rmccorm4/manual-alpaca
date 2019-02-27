@@ -1,14 +1,12 @@
 language: python
 # Alpaca API only supports 3.5+
 python:
-  - "3.5"
-  - "3.5-dev"  # 3.5 development branch
   - "3.6"
-  - "3.6-dev"  # 3.6 development branch
-  - "3.7-dev"  # 3.7 development branch
 # command to install dependencies
 install:
-  - pip install -r requirements.txt
+  - pip install -r config/requirements.txt
+env:
+  - TEST_CMD="black --check --verbose ."
 # command to run tests
 script:
-  - pytest
+  - TEST_CMD 
