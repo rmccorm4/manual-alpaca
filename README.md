@@ -47,8 +47,20 @@ You will need API Keys to use the API, see the
 [Alpaca API Documentation](https://docs.alpaca.markets/api-documentation/web-api/)
 for help with generating your API keys.
 
-For now, you should put your API keys in `config/config.yaml`. This may change in
-the future.
+For now, you can put your API keys in `config/secrets.yaml`, or you can store
+the keys in environment variables like so:
+
+```bash
+ export APCA_API_KEY_ID: <Key ID>
+ export APCA_API_SECRET_KEY: <Secret Key>
+```
+
+> **NOTE**: Currently, `authenticate(mode='paper'` assumes paper-trading by default, so it
+expects that APCA_API_KEY_ID and APCA_API_SECRET_KEY are your paper-trading keys.
+If you would like to live trade, make sure that you explicitly choose so with
+`authenticate(mode='live')`, and use your live keys instead.
+
+This may change in the future.
 
 ## Usage
 
