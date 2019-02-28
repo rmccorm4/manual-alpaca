@@ -3,10 +3,3 @@ name: manual_alpaca
 version: 0.1
 description: "A tool to manually interact with the Alpaca Trading API."
 source: "https://github.com/rmccorm4/manual-alpaca"
-api_keys:
-  paper:
-  	public: "paper-trading-public-key-goes-here"
-	private: "paper-trading-private-key-goes-here"
-  live:
-  	public: "live-trading-public-key-goes-here"
-	private: "live-trading-private-key-goes-here"

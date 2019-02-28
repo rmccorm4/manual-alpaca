@@ -104,4 +104,4 @@ venv.bak/
 .mypy_cache/
 
 # API Keys
-config/config.yaml
+config/secrets.yaml
