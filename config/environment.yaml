@@ -6,6 +6,8 @@ dependencies:
   - python=3.6
   - pandas
   - pyyaml
+  - pytest
+  - flake8
   - pip:
     - alpaca_trade_api
 	- black

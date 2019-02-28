@@ -5,7 +5,8 @@ python:
 # command to install dependencies
 install:
   - pip install -r config/requirements.txt
-  - TEST_CMD="black --check --verbose ."
 # command to run tests
 script:
-  - $TEST_CMD 
+  - black --check --verbose .
+  - flake8 .
+  #- coverage run py.test . --runslow --doctest-modules

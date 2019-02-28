@@ -1,3 +1,6 @@
 pandas
 alpaca_trade_api
 black
+pyyaml
+pytest
+flake8
