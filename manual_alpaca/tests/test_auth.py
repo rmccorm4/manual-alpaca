@@ -9,7 +9,7 @@ from ..manual_alpaca import authenticate
 
 # TODO: Learn how to encrypt keys for TravisCI
 # Export real keys before testing
-@pytest.mark.skip(reason="Not sure yet how to encrypt API keys in tests")
+#@pytest.mark.skip(reason="Not sure yet how to encrypt API keys in tests")
 @pytest.mark.parametrize("mode", ["live", "paper"])
 def test_auth_from_env_valid(mode):
     authenticate(mode=mode)
