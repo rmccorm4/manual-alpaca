@@ -13,7 +13,7 @@ install:
   - pip install -r config/requirements.txt
 # Alpaca API Keys for Paper Trading
 env:
-  # APCA_API_KEY_ID and APCA_API_SECRET_KEY
+  # travis encrypt APCA_API_KEY_ID=... APCA_API_SECRET_KEY=... --com
   secure: "gOhBLXKiZwC0CKT8KcFYkS5kDNTvfn75X42pRVq4bqmugQiKthse5r/iNvupkWSQg3sHVeuBMmOH9WSomP0l+hfYYeDtB/u8s5T/g1lqDMThNfGZNRCFrLVB4RwxJImi9e2TsvlPg2Me6tEerizcOaq3ib/rE5f7el+p0kndDSV8YYBXvmEReRs+l+BGMPOh4sG8Fw71hJGJKyeq2yq4bnpyyU/ONEafgyBX7cZFKDXw9Ck5aOmEf/QQDjMSO4R+3ZedfosLET5JzK2/dQNRVGxNbo/geLX6w/O1S3Y9abBTCm0kIlSs9Z6fSsH1IYuU0yKb75xo4WWqCq+YdvLnYp93gHI5kkT9OIyn8QQ3MxTqJ/Xy5EPEfrmfxASEFUE4ZOjjjQfO33cOe5Kcl2jZuE+blLToHGACKc6gpo6qjmX8ZQTmUHjaqHIH4cY0T3HM5n/7/C03LJP1bpS+gOYUPSOK667QPaO9jLroJ6j5hWMKcZvw7XXOcgOGg3la5T6YVrGJCbNtHRypLj46yXtXNNPbfUqJY8r3MQtM2NX+S4E0dKZv33mUtiBGLIu4l6IpjKxDJDNKDF6f89DpE4xTUlcvw5JAZLdzvBx6Bj2E7f5EZcT72LD6fKj+k7vMoS+RX4pFcEd9vKwBCgDojAuWcVLJBQAvvWh5dN+AeEm5KI0="
 script:
   - black --check --verbose .
