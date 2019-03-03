@@ -46,6 +46,9 @@ def authenticate(auth_path="", mode="paper"):
             print("Authentication failed.")
             print(authenticate.__doc__)
             sys.exit(2)
+        except TypeError:
+            print("YAML file [{}] didn't have proper keys.".format(auth_path))
+            sys.exit(3)
 
     # Saving keys as environment variables
     else:

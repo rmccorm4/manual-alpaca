@@ -2,11 +2,13 @@ language: python
 # Alpaca API only supports 3.5+
 python:
   - "3.6"
+  - "3.7"
 # command to install dependencies
 install:
   - pip install -r config/requirements.txt
 # command to run tests
 script:
   - black --check --verbose .
-  - flake8 .
+  - flake8
+  - pytest
   #- coverage run py.test . --runslow --doctest-modules
