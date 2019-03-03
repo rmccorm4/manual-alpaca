@@ -16,3 +16,4 @@ script:
   - black --check --verbose .
   - flake8
   - pytest
+  #- coverage run py.test . --runslow --doctest-modules
