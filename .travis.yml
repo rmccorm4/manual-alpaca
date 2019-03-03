@@ -1,23 +1,21 @@
 language: python
-# Alpaca API only supports 3.5+
-python:
-  - "3.6"
-# Enable 3.7 without globally enabling sudo and dist: xenial for other build jobs
 matrix:
+  # Alpaca API only supports 3.5+
   include:
-    - python: 3.7 
-    dist: xenial
-    sudo: true
+    - python: 3.6
+      dist: xenial
+      sudo: false
+    # Enable 3.7 without globally enabling sudo/dist for other builds
+    - python: 3.7
+      dist: xenial
+      sudo: true
 # command to install dependencies
 install:
   - pip install -r config/requirements.txt
 # Alpaca API Keys for Paper Trading
-#env:
-#  secure: 
-#    # APCA_API_KEY_ID
-#    - "QMU7sO4Q3MIJl5bD2dtijfDJduk5tmlmt+KQw3UWMYjtomgkdc8g+L/2LCZH+7N/+cASzaSAn6814/ai7lKplNpz47xrEQxHFXjvauEdF/AckUe8dW/q3zlUS1+3V+aFa98KG1FurV+E0IkwmUlyTrxMgpU7Qt8dhKBVYkWvH0w+oDovIVZqizjXVj4BREkttBpwY/6foswlZHxrwpUJN5y8GF6e9Fjtvzlyl9DlAgUKcCTpiWV+5cwp2rBoGCxn3qa5PZJYzwVlcQMk+7aOOiqWr9e6V0aMhWj8S6UypIlNtH1qorgp3DnQdXmJ1u4p0yivYl4YRSL2ru3jqg3J5/yeh9U+0gPH++LZ0JO211aLmOlLytAqsPGksDQ5kz3naUPP15Ft7W93ufv+qQLScaiBi/2XCy9+3Mj/pMlAmLRRW/JO6g6s4Ax+BaCfend/Z6A4qpdXZ1+fADxz5A8179cwgvxPKOesoy/Wf414Hy8edYz20pAEsFQ9AXfzhby3MlZTTGYl4hMTvTZaIrAA8akaeYxQ0CEh2JXlZUXR+sQi5xt0B+0J20aH7ZEFvMIWpPJhw3uZSuBgD1IKdALcBw3NMnsxUqyJkDbnRmZ1GTs9U75I51gBcZ4jDMo4p2y5J1eD80yemoIMEBoEbbHMwwfygJNUT9s+47oQ43Lc2lw="
-#    # APCA_API_SECRET_KEY
-#    - "igMHhN+fI4FLxSPH9QYMOcpCD+SAu5cHtzBgUGUiAy97iNQ5eCEN3hAUBJkKuRfwN/NZgfYOXYEFJzYUXb/xbZLrTw1sxwP+L5EJ4T2IVBCvk3UClDqvjSDnhssrAkY+p/O7YwBcTbzVgsd0NJ6rfuKxbBxujh4DVqORKyomP3RtkvwjoObJmsoQaNLFO4oksWbRrKmfcAXXQzHPcNmYKTA/5PrBb1QVLlG4TXr2nE0e1hUb3eGuuQig28sYXOmpLMxnHfDkOnLp4bnCVnrDeHvFGKDVBnYOWUX/UddjqidKfE6rfw9cy6QNn4XRWMm37dCRyNXX4tiGf80kd1cBddHrVTihQjnZ1YjYS3MsjQVtVDCYTJnemxjKcdOSMFZH7s87nWyHCO3OE3+Kz7TdXwAmC/f554gwPhqEarBMRC38+ShjXzGez/qA0W0tE3mLdqTY8RS2jM8xm9RWo9VEJkrvoEgyw7kZ8t+toi4c4DwxJsq5U+lPQIF8t65cEP85nHagIin5WS1G6pFCF8s6EoRzvrAjgB1iQse5Zb0FBa4yJmMVtWS+TBg3QqXSBxKp815JEuTK1OdZY/uZIe4+ON39xpJxjLXp7HCzLz8FPpWa7fRxcSqeprXr0yZclO14ae5UwMxetsIa9rerhyz9LYoxD1B/D9f7jRkhdlxz04w="
+env:
+  # travis encrypt APCA_API_KEY_ID=... APCA_API_SECRET_KEY=... --com
+  secure: "gOhBLXKiZwC0CKT8KcFYkS5kDNTvfn75X42pRVq4bqmugQiKthse5r/iNvupkWSQg3sHVeuBMmOH9WSomP0l+hfYYeDtB/u8s5T/g1lqDMThNfGZNRCFrLVB4RwxJImi9e2TsvlPg2Me6tEerizcOaq3ib/rE5f7el+p0kndDSV8YYBXvmEReRs+l+BGMPOh4sG8Fw71hJGJKyeq2yq4bnpyyU/ONEafgyBX7cZFKDXw9Ck5aOmEf/QQDjMSO4R+3ZedfosLET5JzK2/dQNRVGxNbo/geLX6w/O1S3Y9abBTCm0kIlSs9Z6fSsH1IYuU0yKb75xo4WWqCq+YdvLnYp93gHI5kkT9OIyn8QQ3MxTqJ/Xy5EPEfrmfxASEFUE4ZOjjjQfO33cOe5Kcl2jZuE+blLToHGACKc6gpo6qjmX8ZQTmUHjaqHIH4cY0T3HM5n/7/C03LJP1bpS+gOYUPSOK667QPaO9jLroJ6j5hWMKcZvw7XXOcgOGg3la5T6YVrGJCbNtHRypLj46yXtXNNPbfUqJY8r3MQtM2NX+S4E0dKZv33mUtiBGLIu4l6IpjKxDJDNKDF6f89DpE4xTUlcvw5JAZLdzvBx6Bj2E7f5EZcT72LD6fKj+k7vMoS+RX4pFcEd9vKwBCgDojAuWcVLJBQAvvWh5dN+AeEm5KI0="
 script:
   - black --check --verbose .
   - flake8
